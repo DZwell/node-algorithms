@@ -1,3 +1,24 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu+Mono');
+
+* {
+    box-sizing: border-box;
+}
+
 body {
-    background-color: black;
+    background-color: #1d3548;
+    color: #00a9ff;
+    font-family: 'Ubuntu Mono', monospace;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    font-size: 1rem;
+}
+
+header.container {
+    margin: 3rem auto;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 900px;
 }
