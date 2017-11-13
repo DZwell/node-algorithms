@@ -7,7 +7,7 @@ class Library {
 
         this.addShelf = this.addShelf.bind(this);
         this.findIndexOfInput = this.findIndexOfInput.bind(this);
-        this.removeShelf = this.removeShelf.bind(this);
+        this.removeElement = this.removeElement.bind(this);
     }
 
     addBook(title, author) {
@@ -37,12 +37,9 @@ class Library {
         );
     }
 
-    removeBook(title, author) {
-        this.books.splice(this.books.findIndex(element => element.title === title && element.author === author), 1);
-    }
-
-    removeShelf(name) {
-        this.shelves.splice(this.findIndexOfInput(name), 1);
+    removeElement(title, author) {
+        const objectContainer = arguments.length > 1 ? 'books' : 'shelves';
+        this[objectContainer].splice(this.findIndexOfInput, 1);
     }
 }
 
