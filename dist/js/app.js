@@ -23,7 +23,7 @@ class Library {
                 title,
                 books: [],
                 addBook: this.addBook,
-                removeBook: this.removeBook
+                removeBook: this.removeElement
             });
         } else {
             console.log('A shelf with that name already exists.');
@@ -35,6 +35,10 @@ class Library {
             element.title === title && element.author === author :
             element.title === title
         );
+    }
+
+    findShelf(title) {
+        return this.shelves[this.findIndexOfInput(title)];
     }
 
     removeElement(title, author) {
