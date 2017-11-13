@@ -5,6 +5,8 @@ class Library {
         this.title = title;
         this.shelves = [];
 
+        console.log(this);
+
         this.addShelf = this.addShelf.bind(this);
         this.findIndexOfInput = this.findIndexOfInput.bind(this);
         this.removeElement = this.removeElement.bind(this);
@@ -26,11 +28,18 @@ class Library {
                 removeBook: this.removeElement
             });
         } else {
-            console.log('A shelf with that name already exists.');
+            const error = 'A shelf with that name already exists.';
+
+            console.log(error);
+            return error;
         }
     }
 
+    // very flawed– just searching shelves
     findIndexOfInput(title, author) {
+        const objectType = arguments.length > 1 : 'books' ? 'shelves';
+
+
         return this.shelves.findIndex(element => arguments.length > 1 ?
             element.title === title && element.author === author :
             element.title === title
@@ -57,3 +66,28 @@ function initLibrary() {
 }
 
 initLibrary();
+
+// stringify
+function stringifyInput(input) {
+    if (typeof input === 'String') {
+        console.log(input);
+    }
+
+    if (isNaN(input) || typeof input === 'number' || typeof input === 'boolean' || input === null) {
+        console.log(`${input}`);
+    }
+
+    if (input === null) {
+        console.log(`${null}`);
+    }
+
+    if (typeof input === Object) {
+        console.log('uh oh');
+    }
+
+    if (Array.isArray(input)) {
+
+    }
+}
+
+stringifyInput({});
