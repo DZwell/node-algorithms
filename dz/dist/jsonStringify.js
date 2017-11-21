@@ -1,5 +1,18 @@
+function stringifyArray(input) {
+    
+}
+
+
+
 function stringify(input) {
-    return `"${input}"`;
+    switch (typeof input) {
+        case 'string':
+            return `""${input}""`;
+        case 'boolean' || 'number':
+            return `"${input}"`;
+        default:
+            break;
+    }
 
 }
-console.log(stringify('blabs'));
+console.log(stringify(true));
