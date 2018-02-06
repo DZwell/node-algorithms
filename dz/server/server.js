@@ -18,16 +18,16 @@ http.createServer((req, res) => {
 
     fs.exists(pathName, (exist) => {
         if (exist || parseUrl.pathname === '/') {
-            pathName = '../dist/public/index.html';
+            pathName = 'dist/public/index.html';
             res.statusCode = 200;
         } else {
-            pathName = './404.html';
+            pathName = '404.html';
             res.statusCode = 404;
         }
-        fs.readFile(pathName, (err, data) => {
-            console.log(pathName);
-            res.setHeader('Content-type', 'text/html' );
-            res.end(data);
+        fs.readFile('dist/public/index.html', (err, data) => {
+            res.writeHead(200, {'Content-Type': 'text/html','Content-Length':data.length});
+            res.write(data);
+            res.end();
         });
     });
 

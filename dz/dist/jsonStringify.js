@@ -1,9 +1,3 @@
-function stringifyArray(input) {
-    
-}
-
-
-
 function stringify(input) {
     switch (typeof input) {
         case 'string':
@@ -15,4 +9,4 @@ function stringify(input) {
     }
 
 }
-console.log(stringify(true));
+console.log(stringify(''));
