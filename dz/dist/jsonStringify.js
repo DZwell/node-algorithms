@@ -1,4 +1,5 @@
 function stringify(input) {
+    cnosole.log('here');
     switch (typeof input) {
         case 'string':
             return `""${input}""`;
