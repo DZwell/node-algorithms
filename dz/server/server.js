@@ -5,6 +5,7 @@ const path = require('path');
 
 
 http.createServer((req, res) => {
+    let extension;
     const parseUrl = url.parse(req.url);
     let pathName = `.${parseUrl.pathname}`;
     const mimeType = {
@@ -17,23 +18,27 @@ http.createServer((req, res) => {
     
 
     fs.exists(pathName, (exist) => {
-        if (exist || parseUrl.pathname === '/') {
-            pathName = 'dist/public/index.html';
-            console.log(pathName);
-            const extension = pathName.match(/\..+$/)[0];
+        if (exist) {
+            pathName =  pathName === './' ? 'dist/public/index.html' : pathName;
+            console.log('here', pathName);
+            extension = pathName.match(/\..+$/)[0];
             res.statusCode = 200;
+            res.writeHead(200, {'Content-Type': mimeType[extension],'Content-Length':data.length});
+            fs.readFile(pathName, (err, data) => {
+                console.log('readfile');
+                console.log(pathName);
+                res.write(data);
+                res.end();
+            });
         } else {
             fs.readFile('server/404.html', (err, data) => {
+                console.log('in 404');
+                console.log(pathName);
                 res.writeHead(404, {'Content-Type': 'text/html','Content-Length':data.length});
                 res.write(data);
                 res.end();
             });
         }
-        fs.readFile('dist/public/index.html', (err, data) => {
-            res.writeHead(200, {'Content-Type': 'text/html','Content-Length':data.length});
-            res.write(data);
-            res.end();
-        });
     });
 
 }).listen(3000, '127.0.0.1');
